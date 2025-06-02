@@ -1,0 +1,161 @@
+/* @theme labmtg_theme */
+
+@import "default";
+
+/* 表紙スライド（.cover）だけに適用 */
+section.lead h1 {
+  font-size: 2.2em;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 4px solid #002b5c;
+  margin-bottom: 0.5em;
+}
+
+section.lead h2 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 0;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+section.lead p {
+  text-align: center;
+  font-size: 0.9em;
+  margin: 0.3em 0;
+}
+
+section.lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  height: 100%;
+}
+
+/* サブ表紙に適用 */
+section.sublead h1 {
+  font-size: 2.2em;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 8px solid #002b5c;
+  margin-bottom: 0.5em;
+}
+
+section.sublead h2 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 0;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+section.sublead p {
+  text-align: center;
+  font-size: 0.9em;
+  margin: 0.3em 0;
+}
+
+section.sublead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  height: 100%;
+}
+
+
+/* スライド全体を帯＋footerに対応させる */
+section {
+  position: relative;
+  overflow: visible;
+  counter-increment: slide;
+}
+
+/* ネイビーの帯を最下部に表示 */
+section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 43px;
+  background-color: #002b5c;
+  z-index: 0;
+}
+
+/* ページ番号を右下に表示 */
+section::before {
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 4px;
+  right: 16px;
+  color: white;
+  font-size: 0.75em;
+  z-index: 1;
+}
+
+/* 日付を左下に表示させることでページ番号を上書き */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 4px 8px;
+  font-size: 0.75em;
+  background-color: #002b5c;
+  color: white;
+  z-index: 1;
+}
+
+/* H1見出しの左にネイビーの縦棒を追加 */
+section:not(.lead) h2 {
+  position: relative;
+  padding-left: 16px;
+  margin: 1em 0;
+}
+
+section:not(.lead) h2::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 45%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 1.0em;
+  background-color: #002b5c;
+  border-radius: 1px;
+}
+
+section:not(.lead) h1 {
+  font-size: 1.4em; 
+}
+
+section:not(.lead) h2 {
+  font-size: 1.1em;
+}
+
+section:not(.lead) h3 {
+  font-size: 1.0em;
+}
+
+section:not(.lead) h4 {
+  font-size: 0.6em;
+}
+
+section:not(.lead) p {
+  font-size: 0.75em;
+}
+
+section:not(.lead) ul {
+  font-size: 0.75em;
+}
+
+small.reference {
+  font-size: 0.6em;
+  display: block;
+  margin-top: 0.5em;
+  color: #333; /* optional: 論文リンクを目立たせたくない場合 */
+}
