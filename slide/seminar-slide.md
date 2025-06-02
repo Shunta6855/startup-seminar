@@ -44,83 +44,40 @@ _footer: ""
 
 **1. 機械学習とは何か？**
 
-## 1. 機械学習とは
+## 1-1. 機械学習とは
 大量のデータから **入力→出力** の関係を学習し，未知データも予測できるアルゴリズムの集合
 
 ### なぜ機械学習か？
-| 伝統的手法では困難 | 機械学習が得意 |
-|-------------------|----------------|
-| ルールが⻑大      | データ→自動学習 |
-| 環境変動が激しい | 継続学習で追随 |
-| データが膨大      | パターン抽出 |
+
+<div class="indent">
+機械学習は次のような問題を得意とする
+
+- 既存のソリューションでは、手作業による大量の微調整や、ルールの長いリストが必要な問題
+- 伝統的な方法ではよいソリューションが作れない複雑な問題
+- 環境が変動するシステム
+- 複雑なシステムや大量のデータについての知見の獲得
+
+</div>
 
 ---
 
-**1. How are ML/DL Used in Urban Transportation?**
+**1. 機械学習とは何か？**
 
-## 2. Traffic Control & Policy Optimization with RL
-- Traffic Signal Control
-- Dynamic routing: real-time navigation for drivers and AVs
-- On-demand mobility: ride-hailing dispatch optimization
-- Dynamic pricing: congestion tax, tolls, fares
+## 1-2. 機械学習のタイプ
+1. 教師あり学習
+    
+    アルゴリズムに与える訓練データの中に「ラベル（label）」と呼ばれる答えが含まれる
+    入力データと正解データの関係性を関数として近似する
+    ex） 回帰（連続値）、分類（離散値）
 
-→ Real-time adaptive mobility management
-
-#### Papers
-<small class="reference">
-1. Jiang, Q., Qin, M., Shi, S., Sun, W., & Zheng, B. (2022). Multi-agent reinforcement learning for traffic signal control through universal communication method. arXiv. https://arxiv.org/abs/2204.12190<br>
-2. Lu, R., Hong, S. H., & Zhang, X. (2018). A dynamic pricing demand response algorithm for smart grid: Reinforcement learning approach. Applied Energy, 220, 220–230. https://doi.org/10.1016/j.apenergy.2018.03.072
-
-</small>
-
----
-
-**1. How are ML/DL Used in Urban Transportation?**
-
-## 3. Apply ML/DL to Public Transportation
-- ML for demand and delay prediction
-- Scheduling optimization
-- Anomaly detection in equipment and systems
-
-#### Papers
-<small class="reference">
-1. Alexandre, T., Bernardini, F., Viterbo, J., & Pantoja, C. E. (2023). Machine learning applied to public transportation by bus: A systematic literature review. Transportation Research Record, 2677(7), 639–660. https://doi.org/10.1177/03611981231174827<br>
-2. Zhao, W. & Deng, J. (2025). Fault prediction and maintenance of urban rail transit power supply system based on big data. Applied Mathematics and Nonlinear Sciences, 10(1), 2025. https://doi.org/10.2478/amns-2025-0225<br>
-3. Nassir, N., Balaprakash, P., & Ben-Akiva, M. (2023). MARLin: A meta-learned adaptive reinforcement learning policy for optimizing urban traffic signal control. *Information Sciences, 646*, 119063. https://doi.org/10.1016/j.ins.2023.119063
-
-</small>
-
----
-
-**1. How are ML/DL Used in Urban Transportation?**
-
-## 4. Agent-Based Modeling $\times$ ML
-- ABM reproduces traffic phenomena by simulating the behavior of individual agents
-- An approach that uses machine learning to build a surrogate model as a proxy for the simulator and performs a fast approximate evaluation has been attracting attention
-- Incorportate LLM into agent decision making to reproduce a wide variety of behavior patterns and decision-making processes.
-- Integrate Reinforcement Learning into ABM and search for effective interventions
-
-#### Papers
-<small class="reference">
-1. Natterer, E. S., Rao, S. R., Tejada Lapuerta, A., Engelhardt, R., Hörl, S., & Bogenberger, K. (n.d.). Machine learning surrogates for agent-based models in transportation policy analysis. SSRN. https://doi.org/10.2139/ssrn.5182100<br>
-2. Liu, T., Yang, J., & Yin, Y. (2025). Toward LLM-agent-based modeling of transportation systems: A conceptual framework. arXiv. https://arxiv.org/abs/2412.06681<br>
-3. Yuan, Y., Silva, F. L. da, & Glatt, R. (2023). Reinforcement learning in agent-based modeling to reduce carbon emissions in transportation. In NeurIPS 2023 Workshop on Tackling Climate Change with Machine Learning. https://www.climatechange.ai/papers/neurips2023/70
-</small>
-
----
-
-**1. How are ML/DL Used in Urban Transportation?**
-
-## 5. On-Demand Mobility Systems
-
-- Demand prediction and vehicle dispatch optimization
-- MaaS, ride-sharing , autonomous taxi fleet management
-
-#### Papers
-<small class="reference">
-1. Eshkevari, S. S., Tang, X., Qin, Z., Mei, J., Zhang, C., Meng, Q., & Xu, J. (2022). Reinforcement learning in the wild: Scalable RL dispatching algorithm deployed in ridehailing marketplace. arXiv. https://arxiv.org/abs/2202.05118<br>
-2. Brusselaers, N., Hjorth, S., Fredriksson, A. and Gundlegård, D. (2025), "The potential of machine learning modeling to predict urban construction transport demand", Smart and Sustainable Built Environment, Vol. ahead-of-print No. ahead-of-print. https://doi.org/10.1108/SASBE-12-2024-0558
-</small>
+2. 教師なし学習
+    
+    ラベルなしデータを取り扱い、データの潜在的なパターンを学習する
+    ex）クラスタリング、主成分分析
+    
+3. 強化学習
+    
+    エージェント(Agent)が環境と相互作用しながら報酬(Reward)を最大化するような行動戦略(ポリシー)を学習する
 
 ---
 <!--
@@ -130,148 +87,448 @@ _header: ""
 _footer: ""
 -->
 
-# 2. Adaptive Traffic Signal Control with RL
-![bg left](../images/TSC_with_RL.png)
+# 2. 機械学習プロジェクトの進め方
 
 ---
 
-**2. Adaptive Traffic Signal Control with RL**
+**2. 機械学習プロジェクトの進め方**
 
-## Background
-- Urban traffic congestion is a serious societal issue, significantly influenced by the method of traffic signal control.
-- Traditional systems relied on fixed-time or traffic-actuated controls based on empirical rules.
-- There is a growing demand for autonomous signal control that can adapt in real time to changing traffic conditions.
-- Recently, reinforcement learning has gained attention as a promising approach, enabling signal agents to learn optimal control policies through trial and error.
-
-#### Papers
-<small class="reference">
-1. Wang, Y., Long, M., Wu, Q., Liu, W., Pi, J., & Yang, X. (2025). A parallel hybrid action space reinforcement learning model for real-world adaptive traffic signal control. arXiv. https://arxiv.org/abs/2503.14250
-</small>
+## 2-1. 概要
+本講義では、機械学習プロジェクトの進め方について、各プロセスを実際に手を動かしつつ学び、機械学習にとどまらないデータサイエンスの基礎を教えることを目的とする
+<img src="../images/workflow.png" class="align-center" alt="workflow">
 
 ---
 
-**2. Adaptive Traffic Signal Control with RL**
+**2. 機械学習プロジェクトの進め方**
 
-## RL Architectures for Signal Control
-- Reinforcement Learning for large-scale traffic signal control can be broadly categorized based on agent architecture: single-agent, multi-agent, and hierarchical approaches.
+## 2-2. 問題設定
+機械学習を使うことによってどのような問題を解決したいのか、という目的を明確化しなければならない
+この目的の明確化によってどのようなデータや評価指標を使って、どのようなモデリングを行うかが決まる
 
-### 1. Single-Agent
-- Control the entire network with one RL agent
+よくある勘違い
+- 機械学習・AI を使えばなんでも解決する → そんなわけない、ただの数学と統計
+- より複雑なモデルの方が優れている → 問題によってはシンプルなモデルの方が適していることもある
 
-#### Papers
-<small class="reference">
-1. Li, Q., Niu, J., Luo, Q., & Yu, L. (2025). Large-scale regional traffic signal control based on single-agent reinforcement learning. arXiv. https://arxiv.org/abs/2503.09252
-arXiv<br>
-</small>
+何を解決したいのかをプロジェクトを通じて意識することでそこがブレないようになる
+
 
 ---
 
-**2. Adaptive Traffic Signal Control with RL**
+**2. 機械学習プロジェクトの進め方**
 
-## RL Architectures for Signal Control
+## 2-3. 評価指標の定義
+評価指標とは、学習させたモデルの性能やその予測値の良し悪しを図る指標である
 
-### 2. Multi-agent
-- Assign an agent to each intersection, offering scalability but requiring coordination
+**評価指標の例**
+<div class="indent">
+    <strong>回帰</strong>
+        <div class="indent">
+            <strong>RMSE（Root Mean Squared Error）</strong>
+             <ul>
+                <li>各レコードの目的変数と予測値の差の二乗をとり、それらを平均した後に平方根を取ることで計算される</li>
+            </ul>
+        </div>
+</div>
 
+$$
+\text{RMSE}=\sqrt{\frac{1}{N}\sum_{i=1}^N(y_i-\hat{y_i})^2}
+$$
 
-#### Papers
-<small class="reference">
-1. Wei, H., Chen, C., Zheng, G., Wu, K., Gayah, V., Xu, K., & Li, Z. (2019). PressLight: Learning max pressure control to coordinate traffic signals in arterial network. In Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (pp. 1290–1298). ACM. https://doi.org/10.1145/3292500.3330949
-<br>
+<div class="indent">
+        <div class="indent">
+            <strong>RMSE（Root Mean Squared Error）</strong>
+             <ul>
+                <li>真の値と予測値の差の絶対値の平均によって計算される</li>
+            </ul>
+        </div>
+</div>
 
-</small>
-
----
-
-**2. Adaptive Traffic Signal Control with RL**
-
-## RL Architectures for Signal Control
-
-### 3. Hierarchical control
-- An approach that lies between the above two and divides the control problem hierarchically has also been studied.
-
-
-#### Papers
-<small class="reference">
-1. Fu, Y., Zhong, L., Li, Z., & Di, X. (2025). Federated hierarchical reinforcement learning for adaptive traffic signal control. arXiv. https://doi.org/10.48550/arXiv.2504.05553<br>
-</small>
-
----
-
-**2. Adaptive Traffic Signal Control with RL**
-
-## Simulation Platforms
-
-- **SUMO**: German open-source traffic simulator known for its detailed vehicle-level simulation and external control via TraCl, widely used in RL studies for medium-scale networks.
-- **CityFlow**: Developed by Tsinghua University. It is specialized for large-scale traffic network simulations and is increasingly used as a benchmark environment for multi-intersection RL control.
-- **MATSim**: Less commonly used for directly integrating reinforcement learning agents, with relatively few examples of such implementations.
-
-
-#### Papers
-<small class="reference">
-1. Fu, Y., Zhong, L., Li, Z., & Di, X. (2025). Federated hierarchical reinforcement learning for adaptive traffic signal control. arXiv. https://doi.org/10.48550/arXiv.2504.05553<br>
-</small>
-
----
-<!--
-_class: sublead
-_paginate: false
-_header: ""
-_footer: ""
--->
-
-# 3. Dynamic Route Optimization
-![bg right](../images/Route_Opt.png)
+$$
+\text{MAE}=\frac{1}{N}\sum_{i=1}^N|y_i-\hat{y_i}|
+$$
 
 ---
 
-**3. Dynamic Route Optimization**
+**2. 機械学習プロジェクトの進め方**
 
-## Background
+## 2-3. 評価指標の定義
 
-- Dynamic route optimization in urban traffic systems refers to guiding vehicles in real time based on traffic congestion and demand fluctuations.
-- In reinforcement learning, agents observe traffic states (e.g., congestion levels, vehicle position) and learn optimal routing policies through trial-and-error interactions that yield rewards.
-- The main goals include minimizing total travel time and congestion, and reducing fuel consumption.
+**評価指標の例**
+<div class="indent">
+    <strong>分類</strong>
+        <div class="indent">
+            <strong>混同行列</strong>
+        </div>
+</div>
+
+|         | **予測: 正例** | **予測: 負例** |
+|---------|------------|------------|
+| **真の値: 正例** | TP | FN |
+| **真の値: 負例** | FP | TN |
+
+<div class="indent">
+        <div class="indent">
+            <strong>Accuracy</strong>
+        </div>
+</div>
+
+$$
+\text{accuracy}=\frac{TP+TN}{TP+TN+FP+FN}
+$$
+
+<div class="indent">
+        <div class="indent">
+            <strong>precision と recall</strong>
+        </div>
+</div>
+
+$$
+\text{precision}=\frac{TP}{TP+FP} \space\space\space\space\space\space\space\space
+\text{recall}=\frac{TP}{TP+FN}
+$$
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-4. データの分割
+データを訓練データセットとテストデータセットに分割し、訓練データセットでモデルを訓練してからテスとデータセットでテストすることでモデルが適切に汎化するかどうかを確かめる
+
+**ポイント**
+- EDA やデータの前処理など、実際にデータを触る前にデータを分割しておくことが重要
+    - データの前処理として欠損値を平均値で埋める、という作業を行った場合、テストデータセットの値が使われてしまう
+- 汎化性能を確かめるための情報が訓練時に入り込んでしまうことを「leak」と呼ぶ
+- 時系列データの場合、時間に沿って分割しないと leak になってしまう
 
 ---
 
-**3. Dynamic Route Optimization**
+**2. 機械学習プロジェクトの進め方**
 
-## RL Algorithms
+## 2-5. EDA (Exploratory Data Analysis)
+データの全体像を把握し、前処理やモデリングに活用する
 
-- Classical methods like Q-learning or DQN
-- Multi-agent frameworks such as RouteRL enable collaborative learning among vehicle agents, and newer approaches incorporate GNNs and Transformers for generalization and complex planning tasks.
+**プロセス**
+1. データの取得と準備
 
-#### Papers
-<small class="reference">
-1. Koh, S., Zhou, B., Fang, H., Yang, P., Yang, Z., Yang, Q., Guan, L., & Jie, Z. (2020). Real-time deep reinforcement learning based vehicle routing and navigation. Applied Soft Computing, 96, 106694. https://doi.org/10.1016/j.asoc.2020.106694<br>
-2. Akman, A. O., Psarou, A., Gorczyca, Ł., Varga, Z. G., Jamróz, G., & Kucharski, R. (2025). RouteRL: Multi-agent reinforcement learning framework for urban route choice with autonomous vehicles. arXiv. https://doi.org/10.48550/arXiv.2502.20065<br>
-3. Fuertes, D., Cavallaro, A., del-Blanco, C. R., Jaureguizar, F., & García, N. (2023). NaviFormer: A deep reinforcement learning transformer-like model to holistically solve the navigation problem. OpenReview. https://openreview.net/forum?id=Pj3ErOxlLo
-</small>
+2. データの概要を把握（件数、平均値、中央値、最大値、最小値、標準偏差、欠損値、外れ値 etc..）
 
----
+3. データの可視化
 
-**3. Dynamic Route Optimization**
-
-## Routing Strategies
-- **Centralized routing**: A traffic control center or server computing optimal routes for the entire city and distributing them to individual vehicles.
-- **Decentralized cooperative routing**: allows each vehicle (agent) to independently determine its path, with recent research focusing on enabling inter-vehicle communication and coordination for improved efficiency.
-
-#### Papers
-<small class="reference">
-1. Xiao, Z., Li, P., Liu, C., Gao, H., & Wang, X. (2024). MACNS: A generic graph neural network integrated deep reinforcement learning based multi-agent collaborative navigation system for dynamic trajectory planning. Information Fusion, 105, 102250. https://doi.org/10.1016/j.inffus.2024.102250<br>
-</small>
+<div class="indent">
+    <div class="indent">
+        <ul>
+            <li>Categorical Data: 円グラフ、バイオリンプロット、棒グラフ、ボックスプロット
+        </ul>
+    </div>
+    <div class="indent">
+        <ul>
+            <li>Numerical Data; ヒストグラム、散布図、相関行列
+        </ul>
+    </div>
+</div>
 
 ---
 
-**3. Dynamic Route Optimization**
+**2. 機械学習プロジェクトの進め方**
 
-## Simulation Platforms
+## 2-6. 前処理
 
-- **SUMO**: Well-suited for microscopic traffic flow simulation, enabling detailed modeling of individual vehicle behavior.
-- **MATSim**: Designed for large-scale urban transportation simulation, making it suitable for evaluating city-wide dynamic routing strategies.
+### 1. 欠損値処理
+機械学習モデルは `NaN` を扱うことができないため、次のいずれかを用いて処理する
+
+- 削除：欠損行・欠損列を削除
+- 補完：平均値・中央値・最頻値などで埋める
+- 特別な値で埋める：`-999`や`"missing"`など
+    ＝ 欠損していること自体に意味があると考える
 
 ---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-6. 前処理
+
+### 2. スケーリング
+特徴量のスケールが異なると、勾配・距離ベースのアルゴリズムで違いが出てしまう（モデルによっては不要）
+<p class="indent">ex） 身長（150〜200）と体脂肪率（10〜30）</p>
+
+次のいずれかの処理を行う
+
+- 標準化：平均 0 ・標準偏差 1 にする
+
+$$
+Z=\frac{x-\mu}{\sigma}
+$$
+
+- 正規化：データを [0, 1] の範囲にスケーリング
+
+$$
+x' = \frac{x - x_{\min}}{x_{\max} - x_{\min}}
+$$
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-6. 前処理
+
+### 3. カテゴリ変数のエンコーディング
+機械学習モデルは「文字列」を扱えないため、数値に変換する必要がある
+
+<div class="flex-2col">
+    <div class="col">
+        One-Hot Encoding：独立したフラグ列を作る
+        <img src="../images/onehot-encoding.png" class="flex-img">
+    </div>
+    <div class="col">
+        Label Encoding：整数ラベルに変換
+        <img src="../images/label-encoding.png" class="flex-img">
+    </div>
+</div>
+
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-6. 前処理
+
+### 4. 外れ値処理
+極端な値がモデルの学習を歪める可能性があるため、外れ値を処理する必要がある
+
+- 閾値で除去
+- 対数変換で影響を小さくする
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-7. 特徴量エンジニアリング
+
+- 前処理：モデルにデータを特徴量として入力できるような形に「きれいにする」
+- 特徴量エンジニアリング：モデルの精度を向上させることを目的として、モデルが学習しやすい「意味のある特徴を作る」
+
+### 1. 特徴量の選択
+<div class="indent">
+    関係のない or 冗長な特徴を削除し、過学習を防ぐ & 学習を早くする
+        <div class="indent">
+            ex）
+            <div class="indent">
+                <ul>
+                    <li>相関係数による削除
+                    <li>木系モデルの feature_importances_
+                    <li>L1 正則化 (Lasso)
+                </ul>
+            </div>
+        </div>
+</div>
+
+
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-7. 特徴量エンジニアリング
+
+### 2. 特徴量の生成
+<div class="indent">
+    元のデータを組み合わせて新しい特徴量を作成する
+        <div class="indent">
+            ex）
+            <div class="indent">
+                <ul>
+                    <li>日付 -> 曜日、月、時間帯
+                    <li>地域 -> 人口密度、距離
+                    <li>2つの特徴量の差分や比率を取る（一番多い気がする）
+                </ul>
+            </div>
+        </div>
+</div>
+
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-7. 特徴量エンジニアリング
+
+### 3. 特徴量の変換
+<div class="indent">
+    分布やスケールを整えて、モデルが学習しやすくする
+        <div class="indent">
+            ex）
+            <div class="indent">
+                <ul>
+                    <li>対数変換：外れ値を圧縮
+                    <li>Box-Cox変換：分布を正規分布に近づける
+                </ul>
+            </div>
+        </div>
+</div>
+
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-7. 特徴量エンジニアリング
+
+### 4. 特徴量の変換
+<div class="indent">
+    カテゴリや連続値を、モデルが処理しやすい形にする
+        <div class="indent">
+            ex）
+            <div class="indent">
+                <ul>
+                    <li>グループ化：年齢=31 -> 年齢_bin=30代
+                    <li>分解：住所 -> 都道府県市区町村
+                    <li>上位カテゴリへの変換：商品 ID -> カテゴリ名
+                </ul>
+            </div>
+        </div>
+</div>
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-7. 特徴量エンジニアリング
+
+### 4. 特徴量の変換
+<div class="indent">
+    カテゴリや連続値を、モデルが処理しやすい形にする
+        <div class="indent">
+            ex）
+            <div class="indent">
+                <ul>
+                    <li>グループ化：年齢=31 -> 年齢_bin=30代
+                    <li>分解：住所 -> 都道府県市区町村
+                    <li>上位カテゴリへの変換：商品 ID -> カテゴリ名
+                </ul>
+            </div>
+        </div>
+</div>
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+モデリングとは、整えたデータを使って「入力 -> 出力」の対応関係を学習する関数（モデル）を構築するプロセス
+
+###  代表的な機械学習モデル一覧（例）
+
+| モデル名 | タスク | 特徴 | 利用例 |
+|---------|--------|------|--------|
+| 線形回帰 | 回帰 | 単純な線形関係を学習・解釈性が高い | 売上予測、温度予測 |
+| ロジスティック回帰| 分類 | 出力が確率、二値分類に適する | スパムメール判定 |
+| 決定木| 分類 / 回帰 | 木構造で直感的、過学習に注意 | 顧客分類、価格予測 |
+| ランダムフォレスト| 分類 / 回帰 | 複数の決定木の集合で高性能 | 医療診断、信用スコア |
+| 勾配ブースティング| 分類 / 回帰 | 高精度、高速、特徴重要度も算出 | コンペ、業務システム |
+| k近傍法 | 分類 / 回帰 | シンプル、距離ベース | パターン認識、画像分類 |
+| SVM | 分類 / 回帰 | マージン最大化、高次元に強い | 顔認識、文書分類 |
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+###  代表的な機械学習モデル一覧（例）
+
+| モデル名 | タスク | 特徴 | 利用例 |
+|---------|--------|------|--------|
+| PCA (主成分分析) | 次元削減 | データ圧縮、可視化に便利 | ノイズ除去、前処理 |
+| k-means | クラスタリング | 教師なしでグルーピング | 顧客分類、画像圧縮 |
+| ニューラルネットワーク| 分類 / 回帰 | 複雑な関係を学習可能 | 音声・画像認識 |
+| 畳み込みNN (CNN) | 画像処理系 | 画像の空間構造に強い | 顔認識、物体検出 |
+| 再帰型NN (RNN, LSTM, GRU) | 時系列・文章 | シーケンス処理に特化 | 翻訳、株価予測、音声認識 |
+
+※ 各モデルの詳細は、この時間内に教えることは不可能なので、自分が行う研究で用いる場合に都度都度勉強する
+
+---
+
+
+
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+###  過学習（Overfitting）
+<div class="indent">
+    学習データのランダムなノイズまで学習してしまい、学習データではスコアがいいが、それ以外のデータでスコアが悪くなること
+    <br>
+    逆に、十分に学習データの性質が学習できていなく、学習データでもそれ以外のデータでもスコアがよくないことをアンダーフィッティングと呼ぶ
+</div>
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+### モデルの評価
+<div class="indent">
+    予測モデルを作成する主な目的：未知のデータに対して高い精度で予測を行うこと<br>
+    モデルの作成は一度で終わることはなく、一度作成して評価をし、特徴量エンジニアリングやモデルの再構築などを繰り返し行なっていくことによって精度改善をしていく<br>
+    しかし、この精度改善を行うための評価をテストデータセットを使って行なってはいけない
+    <div class="indent">
+        せっかく、モデルの汎化性能を確かめるために分離しておいたのに、そのテストデータセットでの評価が高まるようにモデル構築プロセスを反復することになってしまうから
+    </div>
+    -> 学習データを学習に用いるデータとバリデーションデータ（評価用のデータ）に分け、バリデーションデータへの予測の精度を何らかの評価指標によるスコアで表すことで評価する
+</div>
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+### バリデーションの手法
+<div class="indent">
+    1. hold-out 法
+    <img class="align-center">
+</div>
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+### モデルの評価
+<div class="indent">
+    予測モデルを作成する主な目的：未知のデータに対して高い精度で予測を行うこと<br>
+    モデルの作成は一度で終わることはなく、一度作成して評価をし、特徴量エンジニアリングやモデルの再構築などを繰り返し行なっていくことによって精度改善をしていく<br>
+    しかし、この精度改善を行うための評価をテストデータセットを使って行なってはいけない
+    <div class="indent">
+        せっかく、モデルの汎化性能を確かめるために分離しておいたのに、そのテストデータセットでの評価が高まるようにモデル構築プロセスを反復することになってしまうから
+    </div>
+    -> 学習データを学習に用いるデータとバリデーションデータ（評価用のデータ）に分け、バリデーションデータへの予測の精度を何らかの評価指標によるスコアで表すことで評価する
+</div>
+
+---
+
+**2. 機械学習プロジェクトの進め方**
+
+## 2-8. モデリング
+
+### モデルの評価
+<div class="indent">
+    予測モデルを作成する主な目的：未知のデータに対して高い精度で予測を行うこと<br>
+    モデルの作成は一度で終わることはなく、一度作成して評価をし、特徴量エンジニアリングやモデルの再構築などを繰り返し行なっていくことによって精度改善をしていく<br>
+    しかし、この精度改善を行うための評価をテストデータセットを使って行なってはいけない
+    <div class="indent">
+        せっかく、モデルの汎化性能を確かめるために分離しておいたのに、そのテストデータセットでの評価が高まるようにモデル構築プロセスを反復することになってしまうから
+    </div>
+    -> 学習データを学習に用いるデータとバリデーションデータ（評価用のデータ）に分け、バリデーションデータへの予測の精度を何らかの評価指標によるスコアで表すことで評価する
+</div>
+
+---
+
+
 <!--
 _paginate: false
 _header: ""

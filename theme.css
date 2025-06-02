@@ -109,11 +109,11 @@ footer {
   z-index: 1;
 }
 
-/* H1見出しの左にネイビーの縦棒を追加 */
+/* H2見出しの左にネイビーの縦棒を追加 */
 section:not(.lead) h2 {
   position: relative;
   padding-left: 16px;
-  margin: 1em 0;
+  margin: 0.3em 0;
 }
 
 section:not(.lead) h2::before {
@@ -138,7 +138,7 @@ section:not(.lead) h2 {
 }
 
 section:not(.lead) h3 {
-  font-size: 1.0em;
+  font-size: 0.8em;
 }
 
 section:not(.lead) h4 {
@@ -153,9 +153,146 @@ section:not(.lead) ul {
   font-size: 0.75em;
 }
 
+section:not(.lead) div {
+  font-size: 0.75em;
+}
+
+
 small.reference {
   font-size: 0.6em;
   display: block;
   margin-top: 0.5em;
   color: #333; /* optional: 論文リンクを目立たせたくない場合 */
+}
+
+/* ナンバリングの修正 */
+section:not(.lead) ol {
+  list-style: none;  /* デフォルトのナンバリングを無効化 */
+  counter-reset: item;
+  padding-left: 1.0em;
+}
+
+section:not(.lead) ol li {
+  counter-increment: item;
+  margin: 0.3em 0;
+  position: relative;
+  padding-left: 2em;
+  font-size: 1.0em; /* 本文サイズ */
+}
+
+section:not(.lead) ol li::before {
+  content: counter(item) ".";
+  position: absolute;
+  left: 0;
+  top: -0.05em;
+  font-size: 0.9em; /* ← ここで数字の大きさを調整 */
+  color: #002b5c;
+}
+
+/* KaTeX クラスの調整 */
+.katex-display {
+  font-size: 0.75em;
+  text-indent: 1.5em;
+}
+
+
+/* インデントを追加 */
+.indent {
+  margin-top: -0.5em;
+  margin-left: 1.5em;
+  font-size: 0.75em;
+}
+
+.indent .indent {
+  font-size: inherit;  /* ← 親と同じサイズを強制 */
+  margin-top: 0em;
+}
+
+/* リストのフォントサイズとパディングを調整 */
+section:not(.lead) ul {
+  font-size: 0.75rem;
+  margin: 0.4em 0;
+  padding-left: 1.2em;
+}
+
+section:not(.lead) ul li {
+  margin: 0.2em 0;
+}
+
+/* 表（table）のフォントサイズとパディングを調整 */
+section:not(.lead) table {
+  font-size: 0.75em;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border: 1px solid #002b5c;
+  text-align: center;
+}
+
+section:not(.lead) table thead th {
+  background-color: #002b5c;  /* 任意の色に変更可能 */
+  color: white;
+}
+
+section:not(.lead) th,
+section:not(.lead) td {
+  padding: 0.3em 0.6em;
+}
+
+/* 画像 */
+section img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  margin-top: 0em;
+  margin-bottom: 0.5em;
+  width: 67%;
+  margin-left: 0;
+  margin-right: 0;
+  left: auto;
+  right: auto;
+}
+
+/* 中央寄せ */
+img.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+}
+
+/* 横並びのボックス */
+.flex-row {
+  display: flex;
+  align-items: center;     /* 上下中央揃え（必要に応じて変更） */
+  justify-content: space-between;
+  gap: 1em;
+}
+
+/* テキスト側の調整 */
+.flex-text {
+  flex: 1;
+  font-size: 0.75em;
+}
+
+/* 画像側の調整 */
+.flex-img {
+  height: 12rem;           /* 高さを統一 */
+  width: auto;             /* 横幅は画像比率に応じて */
+  object-fit: contain;     /* 中身を収める */
+  display: block;
+  margin: 0 auto;
+}
+
+/* 2列のボックス */
+.flex-2col {
+  display: flex;
+  gap: 2em;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.flex-2col > .col {
+  flex: 1;
+  font-size: 0.75rem;
 }
