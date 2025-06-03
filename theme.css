@@ -261,6 +261,15 @@ img.align-center {
   width: 65%;
 }
 
+/* 画像のサイズを調整 */
+.img-small {
+  width: 80% !important;
+}
+
+.img-mini {
+  width: 60% !important;
+}
+
 /* 横並びのボックス */
 .flex-row {
   display: flex;

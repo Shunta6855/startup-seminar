@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "startup-seminar"
+version = "0.1.0"
+description = "Startup seminar project for B4 stundents in UrbTrans Lab"
+authors = ["Shunta6855 <shuntakochi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.2.6"
+pandas = "^2.2.3"
+matplotlib = "^3.10.3"
+seaborn = "^0.13.2"
+scikit-learn = "^1.6.1"
+ipykernel = "^6.29.5"
+xgboost = "^3.0.2"
+lightgbm = "^4.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

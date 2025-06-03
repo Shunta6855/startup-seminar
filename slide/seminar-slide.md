@@ -487,44 +487,123 @@ $$
 ## 2-8. モデリング
 
 ### バリデーションの手法
-<div class="indent">
-    1. hold-out 法
-    <img class="align-center">
+<div class="flex-2col">
+    <div class="col">
+        <strong>1. hold-out 法</strong>
+        <img src="../images/hold-out.png" class="flex-img img-small">
+    </div>
+    <div class="col">
+       <strong> 2. K-fold Cross Validation</strong>
+        <img src="../images/cross-validation.png" class="flex-img img-mini">
+    </div>
 </div>
 
 ---
 
 **2. 機械学習プロジェクトの進め方**
 
-## 2-8. モデリング
+## 2-9. ハイパーパラメータチューニング
 
-### モデルの評価
+**ハイパーパラメータとは**
 <div class="indent">
-    予測モデルを作成する主な目的：未知のデータに対して高い精度で予測を行うこと<br>
-    モデルの作成は一度で終わることはなく、一度作成して評価をし、特徴量エンジニアリングやモデルの再構築などを繰り返し行なっていくことによって精度改善をしていく<br>
-    しかし、この精度改善を行うための評価をテストデータセットを使って行なってはいけない
+    学習の前に指定し、学習の方法や速度、どれだけ複雑なモデルにするかを定めるパラメータのこと
     <div class="indent">
-        せっかく、モデルの汎化性能を確かめるために分離しておいたのに、そのテストデータセットでの評価が高まるようにモデル構築プロセスを反復することになってしまうから
+        ex）ハイパーパラメータの例
     </div>
-    -> 学習データを学習に用いるデータとバリデーションデータ（評価用のデータ）に分け、バリデーションデータへの予測の精度を何らかの評価指標によるスコアで表すことで評価する
 </div>
+
+$$\space$$
+
+<table>
+    <thead>
+        <tr>
+        <th>モデル</th>
+        <th>ハイパーパラメータ</th>
+        <th>意味</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>線形回帰（Ridge）</td>
+        <td>alpha</td>
+        <td>正則化の強さ（大きいほど単純）</td>
+        </tr>
+        <tr>
+        <td>決定木</td>
+        <td>max_depth, min_samples_split</td>
+        <td>木の深さ、枝分かれの最小データ数</td>
+        </tr>
+        <tr>
+        <td>Random Forest</td>
+        <td>n_estimators</td>
+        <td>木の本数</td>
+        </tr>
+        <tr>
+        <td>SVM</td>
+        <td>C, kernel, gamma</td>
+        <td>ペナルティの大きさ、カーネルの種類など</td>
+        </tr>
+        <tr>
+        <td>XGBoost / LightGBM</td>
+        <td>learning_rate, num_leaves, max_depth</td>
+        <td>学習率・モデルの複雑さ</td>
+        </tr>
+        <tr>
+        <td>ニューラルネット</td>
+        <td>learning_rate, batch_size, num_layers</td>
+        <td>学習率、バッチサイズ、層の深さなど</td>
+        </tr>
+    </tbody>
+</table>
 
 ---
 
 **2. 機械学習プロジェクトの進め方**
 
-## 2-8. モデリング
+## 2-9. ハイパーパラメータチューニング
 
-### モデルの評価
+**なぜハイパーパラメータチューニングが必要なのか**
 <div class="indent">
-    予測モデルを作成する主な目的：未知のデータに対して高い精度で予測を行うこと<br>
-    モデルの作成は一度で終わることはなく、一度作成して評価をし、特徴量エンジニアリングやモデルの再構築などを繰り返し行なっていくことによって精度改善をしていく<br>
-    しかし、この精度改善を行うための評価をテストデータセットを使って行なってはいけない
-    <div class="indent">
-        せっかく、モデルの汎化性能を確かめるために分離しておいたのに、そのテストデータセットでの評価が高まるようにモデル構築プロセスを反復することになってしまうから
-    </div>
-    -> 学習データを学習に用いるデータとバリデーションデータ（評価用のデータ）に分け、バリデーションデータへの予測の精度を何らかの評価指標によるスコアで表すことで評価する
+    <ul>
+        <li>ハイパーパラメータ次第でモデル性能が大きく変わる
+        <li>デフォルト設定では最適な精度が出ないことが多い
+        <li>モデルが過学習 / 未学習になるのを防げる
+    </ul>
 </div>
+
+$$\space$$
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>説明</th>
+      <th>実装方法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>手動チューニング</td>
+      <td>経験や試行錯誤で値を変えてみる</td>
+      <td>手で変更して再学習</td>
+    </tr>
+    <tr>
+      <td>グリッドサーチ（Grid Search）</td>
+      <td>全組み合わせを試す</td>
+      <td>GridSearchCV</td>
+    </tr>
+    <tr>
+      <td>ランダムサーチ（Random Search）</td>
+      <td>ランダムに一部を試す</td>
+      <td>RandomizedSearchCV</td>
+    </tr>
+    <tr>
+      <td>ベイズ最適化</td>
+      <td>精度を予測しながら効率的に探索</td>
+      <td>Optuna, Hyperopt</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -535,9 +614,21 @@ _header: ""
 _footer: ""
 -->
 
-# Schedule
+# Reference and Recommendation
 
-**May** : Decide research topic
-**Early June**: Study related work and model techniques
-**Late June**: Conduct preliminary analysis
-**July**: Build a prototype model
+<div class="indent">
+    <h2>データ分析</h2>
+    <ul>
+        <li><a href="https://www.amazon.co.jp/Python%E5%AE%9F%E8%B7%B5%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90100%E6%9C%AC%E3%83%8E%E3%83%83%E3%82%AF-%E4%B8%8B%E5%B1%B1-%E8%BC%9D%E6%98%8C/dp/4798058750" target="_blank">Python 実践データ分析 100本ノック</a></li>
+    </ul>
+    <h2>機械学習</h2>
+    <ul>
+        <li><a href="https://www.oreilly.co.jp/books/9784814400935/" target="_blank">scikit-learn、Keras、TensorFlowによる実践機械学習 第3版</a></li>
+    </ul>
+    <ul>
+        <li><a href="https://www.amazon.co.jp/Kaggle%E3%81%A7%E5%8B%9D%E3%81%A4%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%E3%81%AE%E6%8A%80%E8%A1%93-%E9%96%80%E8%84%87-%E5%A4%A7%E8%BC%94/dp/4297108437" target="_blank">Kaggle で勝つデータ分析の技術</li>
+    </ul>
+    <ul>
+        <li><a href="https://www.kaggle.com/" target="_blank">Kaggle.com</li>
+    </ul>
+</div>
