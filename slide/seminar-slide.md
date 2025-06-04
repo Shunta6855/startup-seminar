@@ -136,7 +136,7 @@ $$
 
 <div class="indent">
         <div class="indent">
-            <strong>RMSE（Root Mean Squared Error）</strong>
+            <strong>MAE(Mean Absolute Error)</strong>
              <ul>
                 <li>真の値と予測値の差の絶対値の平均によって計算される</li>
             </ul>
