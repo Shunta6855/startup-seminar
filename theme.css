@@ -172,20 +172,20 @@ section:not(.lead) ol {
   padding-left: 1.0em;
 }
 
-section:not(.lead) ol li {
+section:not(.lead) ol > li {
   counter-increment: item;
   margin: 0.3em 0;
   position: relative;
   padding-left: 2em;
-  font-size: 1.0em; /* 本文サイズ */
+  font-size: 1.0em;
 }
 
-section:not(.lead) ol li::before {
+section:not(.lead) ol > li::before {
   content: counter(item) ".";
   position: absolute;
   left: 0;
   top: -0.05em;
-  font-size: 0.9em; /* ← ここで数字の大きさを調整 */
+  font-size: 0.9em;
   color: #002b5c;
 }
 
@@ -281,11 +281,18 @@ img.align-center {
 /* テキスト側の調整 */
 .flex-text {
   flex: 1;
-  font-size: 0.75em;
+  font-size: 1.3em !important;
 }
 
 /* 画像側の調整 */
-.flex-img {
+.flex-img img {
+  width: 108% !important;
+  height: auto !important;
+  max-width: none !important;
+}
+
+/* 画像側の調整2 */
+.flex-img2 {
   height: 12rem;           /* 高さを統一 */
   width: auto;             /* 横幅は画像比率に応じて */
   object-fit: contain;     /* 中身を収める */
@@ -304,4 +311,11 @@ img.align-center {
 .flex-2col > .col {
   flex: 1;
   font-size: 0.75rem;
+}
+
+/* コードのフォントサイズを調整 */
+section:not(.lead) pre,
+section:not(.lead) code {
+  font-size: 0.8em;      /* ← 必要に応じて調整 */
+  line-height: 1.0em;
 }

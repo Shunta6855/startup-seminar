@@ -75,4 +75,9 @@ cd startup-seminar
 bash ./setup.sh
 ```
 
-3. **Let's get started with the exercises!**
+3. **[macOS only] Install libomp for XGBoost parallelization support:**
+```bash
+brew install libomp
+```
+
+4. **Let's get started with the exercises!**

@@ -192,7 +192,7 @@ $$
 **2. 機械学習プロジェクトの進め方**
 
 ## 2-4. データの分割
-データを訓練データセットとテストデータセットに分割し、訓練データセットでモデルを訓練してからテスとデータセットでテストすることでモデルが適切に汎化するかどうかを確かめる
+データを訓練データセットとテストデータセットに分割し、訓練データセットでモデルを訓練してからテストデータセットでテストすることでモデルが適切に汎化するかどうかを確かめる
 
 **ポイント**
 - EDA やデータの前処理など、実際にデータを触る前にデータを分割しておくことが重要
@@ -277,11 +277,11 @@ $$
 <div class="flex-2col">
     <div class="col">
         One-Hot Encoding：独立したフラグ列を作る
-        <img src="../images/onehot-encoding.png" class="flex-img">
+        <img src="../images/onehot-encoding.png" class="flex-img2">
     </div>
     <div class="col">
         Label Encoding：整数ラベルに変換
-        <img src="../images/label-encoding.png" class="flex-img">
+        <img src="../images/label-encoding.png" class="flex-img2">
     </div>
 </div>
 
@@ -366,27 +366,6 @@ $$
         </div>
 </div>
 
-
----
-
-**2. 機械学習プロジェクトの進め方**
-
-## 2-7. 特徴量エンジニアリング
-
-### 4. 特徴量の変換
-<div class="indent">
-    カテゴリや連続値を、モデルが処理しやすい形にする
-        <div class="indent">
-            ex）
-            <div class="indent">
-                <ul>
-                    <li>グループ化：年齢=31 -> 年齢_bin=30代
-                    <li>分解：住所 -> 都道府県市区町村
-                    <li>上位カテゴリへの変換：商品 ID -> カテゴリ名
-                </ul>
-            </div>
-        </div>
-</div>
 
 ---
 
@@ -605,8 +584,185 @@ $$\space$$
   </tbody>
 </table>
 
+
+---
+<!--
+_class: sublead
+_paginate: false
+_header: ""
+_footer: ""
+-->
+
+# 3. 機械学習モデル：決定木
+
 ---
 
+**3. 機械学習モデル：決定木**
+
+## 3-1. 決定木の概要
+
+<img src="../images/california_housing_tree.png" class="align-center">
+
+- 決定木とはデータをある条件に従って分割することにより、データの分類または回帰のモデルを作成するアルゴリズム
+- 分類を行う分類木と回帰を行う回帰木を総称して決定木と呼ぶ
+
+
+---
+
+**3. 機械学習モデル：決定木**
+
+## 3-2. 決定木の学習アルゴリズム
+
+
+1. すべてのデータを根ノードに置く  
+
+2. すべての特徴 × すべての分割点 に対して「どの分割が一番良いか？」を計算  
+   ex）身長 ≤ 160cm で分割したらどうなる？
+
+3. 「最も不純度が下がる」分割を採用する  
+    <div class="indent">
+        <ul>
+            <li>分類（クラスが混ざっている度合い）：ジニ不純度、エントロピー
+            <li>回帰（値のばらつき）：分散
+        </ul>
+    </div>
+
+4. 子ノードに分割して、同じ処理を再帰的に繰り返し、停止条件を満たしたら分割を終了する
+5. 葉ノードで予測を行う
+    <div class="indent">
+        <ul>
+            <li>分類：多数決（最も多いクラスを出力）
+            <li>回帰：平均値（そのノードにある目的変数の平均
+        </ul>
+    </div>
+
+---
+
+**3. 機械学習モデル：決定木**
+
+## 3-3. 決定木の長所と短所
+
+
+<div class="indent">
+長所
+    <div class="indent">
+        <ul>
+            <li>解釈しやすい（透明性が高い）
+            <li>前処理がほぼ不要（スケーリング不要、数値・カテゴリ混在でもOK、欠損値の処理も）
+            <li>非線形な関係も捉えられる
+            <li>推論（予測）が速い
+        </ul>
+    </div>
+短所
+    <div class="indent">
+        <ul>
+            <li>過学習（オーバーフィッティング）しやすい
+            <li>精度が頭打ちになりやすい
+            <li>不安定（バリアンスが高い）
+            <li>連続値に対する境界が階段状
+        </ul>
+    </div>
+</div>
+
+---
+
+**3. 機械学習モデル：決定木**
+
+## 3-4. 決定木 × アンサンブル学習
+
+**アンサンブル学習とは？**
+$$\space$$
+<div class="indent">
+    複数の弱いモデル（例：決定木）を組み合わせて、より強い予測モデルを作る手法
+</div>
+
+$$\space$$
+
+<table border="1" cellspacing="0" cellpadding="8">
+  <thead>
+    <tr>
+      <th>タイプ</th>
+      <th>代表例</th>
+      <th>アイデア</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>バギング</strong></td>
+      <td>ランダムフォレスト</td>
+      <td>多数の木を<strong>並列</strong>に学習し、<br>平均または多数決で予測</td>
+    </tr>
+    <tr>
+      <td><strong>ブースティング</strong></td>
+      <td>XGBoost / LightGBM</td>
+      <td>木を<strong>逐次</strong>に追加し、<br>前の誤りを修正していく</td>
+    </tr>
+  </tbody>
+</table>
+
+決定木の限界を振り返ると：「単体だと過学習しやすい（ノイズに過敏）」「精度が頭打ち（境界が階段状で滑らかでない）」「データの変更に不安定」
+
+-> これを補うのが「多数の木を組み合わせて使う」アンサンブル学習！
+
+---
+
+**3. 機械学習モデル：決定木**
+
+## 3-5. ランダムフォレスト
+
+**ランダムフォレストとは？**
+$$\space$$
+<div class="flex-2col">
+    <div class="flex-col">
+        <div class="flex-text">
+            多数の決定木を学習させて、その平均または多数決で予測するモデル
+            <div class="indent">
+                <ul>
+                    <li>各木は異なるデータサンプル・特徴量を使って学習される
+                    <li>決定木の「不安定さ（バリアンス）」を多数でならすことで安定化
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="flex-img">
+    <img src="../images/random-forest.png" class="align-center">
+    </div>
+</div>
+
+---
+<!--
+_class: sublead
+_paginate: false
+_header: ""
+_footer: ""
+-->
+
+# 4. 演習
+
+---
+
+**4. 演習**
+
+## 演習手順
+
+
+1. Git のインストールを行う
+    ```bash
+    # インストール
+    brew install git
+
+    # ターミナルやVS CodeでGitが使えるよう、環境変数PATHを更新
+    echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshenv
+    source ~/.zshenv
+
+    # Gitの動作確認
+    git --version
+    ```
+    
+2. https://github.com/Shunta6855/startup-seminar にアクセスし、README の指示に従って演習を開始する
+
+
+---
 
 <!--
 _paginate: false
